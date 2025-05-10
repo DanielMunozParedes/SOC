@@ -1,8 +1,9 @@
-Next is the explanation of the ARP Spoofing attack. I will be also explaining the ARP proccess because i feel some people misunderstand the correct definition and flow of how thigns works on this networking broadcast process
+before the explanation of the ARP Spoofing attack. we need to understand the ARP proccess because i feel some people misunderstand the correct definition and flow of how thigns works on this networking broadcast process
 
-MITMA(Man In The Middle Attack)
+MITMA = Man In The Middle Attack
 
-To begin the understanding of the ARP Spoofing MITMA, we need first to understand the ARP (Address Resolution Protocol). I want to give a little background so the later topics will flow thru, so this explanation is meant for myselft and for others that hopeful may find this useful; expect some informal teching stuff since is my way of learn things and so on.
+
+To begin the understanding of the ARP (Address Resolution Protocol), i want to give a little background so the later topics will flow thru, so this explanation is meant for myselft and for others that hopeful may find this useful; expect some informal teching stuff since is my way of learn things and so on.
 
 So we need to go straight to the core of this: wehn a device in a LAN needs to "speak" with another device he needs to know its MAC address, but why?
 
@@ -10,7 +11,10 @@ well the thing is, when a IPV4 packet is in the making your device is adding all
 
 we will perform a little example using 2 pcs, 1 switch and 1 router; the most simplest LAN using Packet Tracer
 
+
+
 [![arp1.png](https://i.postimg.cc/MpMD728w/arp1.png)](https://postimg.cc/mP4C4nDp)
+
 
 
 here PC0 (192.168.0.2) whats to send an ICMP ping to the PC1 (192.168.0.3); as we know PC1 needs to asnwer with a Echo reply of taht ICMP reqeust from PC0. Ok, nothing crazy here. Well, that is in a perfect world. PC0 to organize a sending "letter" to PC1 needs to know its MAC addres because *Switches only understand layer 2*  BUT not only for that, look knowing the ip address of your dest is good enough to know where to look your dest device, but knowing the MAC addres, which is a unique 48 bit hex for each ethernet interface of any device, is to know how to actually knock at the door. Both are a team work to arrive. Ip: Location routing, MAC: place direct
@@ -18,15 +22,18 @@ here PC0 (192.168.0.2) whats to send an ICMP ping to the PC1 (192.168.0.3); as w
 so going back the frame is made...but oh, wait a moment, 
 says PC0, "Look i know my destination ip 192.168.0.3, but i need its MAC addres (for the switch and the exact frame dest MAC comunication with the ethernet interface), what do i do?"
 "We need to send a ARP broadcast to know the MAC address of that dest ip, so we ask the swtich to broadcast that request ARP  from us and the switch will flood the network. After that the device with the Dest ip we originally wanted to talk will respond a message frame to swtich with its MAC addres for us, so we can update our ARP table"
-...
+
 thats how it works
 
+
 **an ARP is a broadcast which works with packet as a MAC addresses and target ip**
+
 
 
 look at the PDU ourbound from PC0 before sending a frame to the swtich, take special note that broadcast dest MAC address with FFFF.FFFF.FFFF is meant to be recevied for the host in a LAN regardless of its unique MAC address. The broadcast MAC address is that important that the resources of a network will be using to its complete extension that every device in the net will recevie you like it or not a ARP reqeust taht was flooded by the swtich
 
 lets see the following images
+
 
 [![2.png](https://i.postimg.cc/Hx43rw17/2.png)](https://postimg.cc/bDr1M2Jz)
 
