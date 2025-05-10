@@ -30,7 +30,7 @@ thats how it works
 
 
 
-look at the PDU ourbound from PC0 before sending a frame to the swtich, take special note that broadcast dest MAC address with FFFF.FFFF.FFFF is meant to be recevied for the host in a LAN regardless of its unique MAC address. The broadcast MAC address is that important that the resources of a network will be using to its complete extension that every device in the net will recevie you like it or not a ARP reqeust taht was flooded by the swtich
+look at the PDU ourbound from PC0 before sending a frame to the swtich, take special note that broadcast dest MAC address with FFFF.FFFF.FFFF (or FF:FF:FF:FF:FF:FF) is meant to be recevied for the host in a LAN regardless of its unique MAC address. The broadcast MAC address is that important that the resources of a network will be using to its complete extension that every device in the net will recevie you like it or not a ARP reqeust taht was flooded by the swtich
 
 lets see the following images
 
