@@ -110,7 +110,7 @@ Sooo why do i take all the effort to explain this process? well, i think is impo
 
 this is key
 
-[![9.png](https://i.postimg.cc/NMXjqvzQ/9.png)](https://postimg.cc/mzbsCJ4n)
+[![10.png](https://i.postimg.cc/RhkPs8D6/10.png)](https://postimg.cc/xNPyqsYn)
 
 
 
