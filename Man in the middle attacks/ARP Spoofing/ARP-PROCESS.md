@@ -129,7 +129,7 @@ we can have MAITMA between:
 
 
 
-we need to secure all. so hence the why of the explanation of the ARP first before going to the ARP Spoofign attack
+we need to secure all of them. so hence the why of the explanation of the ARP first before going to the ARP Spoofign attack
 
 
 
