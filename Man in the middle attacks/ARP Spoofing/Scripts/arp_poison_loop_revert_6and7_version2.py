@@ -12,7 +12,8 @@ args = parser.parse_args()
 
 
 #dont forget to enable for the love of god ip forwarding
-
+#also obiously this script works bith router host and viceversam but when ending the attack first end the kali(attacker) to host, and then the router to kali(attacker)
+#sudo python3 arp_poison_loop_revert_6and7_version2.py --target iptarget  --spoof ip to spoof
 
 iface = conf.iface
 MyMAC = get_if_hwaddr(iface)
