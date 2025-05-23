@@ -7,9 +7,11 @@ from datetime import datetime
 iface = conf.iface
 MyMAC= get_if_hwaddr(iface)
 MyIP = get_if_addr(iface)
-arp_table = {MyIP:MyMAC}
 
+router = "192.168.1.1"
+router_mac= "08:00:27:aa:e9:50"
 
+arp_table = {MyIP:MyMAC, router:router_mac}
 
 def checking_Arp(ip,mac,type):
     flag = 0
