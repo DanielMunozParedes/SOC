@@ -1,7 +1,7 @@
 Ok, going to make an explanation of what is an ARP Spoofing attack,and why is called a man in the middle attack as well.
 
 this guide builds upon the previous explanation of the ARP Process whihc is [here](https://github.com/DanielMunozParedes/SOC/blob/main/Man%20in%20the%20middle%20attacks/ARP%20Spoofing/ARP-PROCESS.md)
-
+this guide,also, initially will be based on the lab environment diagram in [victualbox](https://github.com/DanielMunozParedes/SOC/blob/main/lab-diagrams/1.md)
 
 so what is spoofing ??
 
@@ -22,5 +22,97 @@ That is the core of this, the attack will say to the victim the rotuers(or anyon
 
 exactly, it will send (based on the CAM TABLE)  to the whatever destination mac addr is attached to the frame, so in this attack it will go right to the attaacker's, simply as that.
 
+But why your victim, or let's call it better, why all the NIC have to be so blidly-trust to any ARP reply? That is the way it is. That is the mechanism ARP works as today. and that is a vulnerability that is and has been exploited.
 
-and here is the thing: those replies are the attack. You see, those replies ,when sended thru your NIC, will go to the network whenenver the architecture and send a frame to be "readble" to the switch and the majority of tools will use this process because 
+---------------
+
+next i will show some simple image examples of a kali machie(attacker) sending ARP replies to an Ubuntu Desktop (Victim) and the rotuers as well
+
+[![1.png](https://i.postimg.cc/wBy90ZFb/1.png)](https://postimg.cc/qtrf7mP8)
+
+
+we can see here the arp table that the Ubuntu has originally before the attack (dont mind the incomplete 192.168.1.116 is SOC machine because there is a wazuh agent on the ubuntu is constantly sending arps the meaning of this is the soc machien is turned off). take nothe of the mac address
+
+---------
+
+
+
+[![2.png](https://i.postimg.cc/KY6xVfHc/2.png)](https://postimg.cc/Y4z5L67T)
+
+this again, arp table of the pfsense router/firewall of this lab. take nothe of the mac address
+
+---------
+
+
+[![3.png](https://i.postimg.cc/63CtNZkr/3.png)](https://postimg.cc/474r6YNy)
+
+on the wireshark, from the POV of the ubuntu everithing seems normal
+
+
+----------
+
+
+[![4.png](https://i.postimg.cc/02kxLbcS/4.png)](https://postimg.cc/4nSrcNC4)
+
+now from the kali attacker machine we will lauch the attack, impersonating the router and sending replies to the victim(ubuntu) to our mac address
+
+
+---------
+
+[![5.png](https://i.postimg.cc/T1GG2wxZ/5.png)](https://postimg.cc/wyWn097V)
+
+look!!! the arp table of the ubuntu now has 2 same mac address, the 100% indicator that there is an ARP spoofing attack. one fro mthe attackers kali ip .112 and the other the rotuers whom initially has a different mac address
+
+
+---------
+
+
+[![6.png](https://i.postimg.cc/hthntNFP/6.png)](https://postimg.cc/w1KZWfTS)
+
+a "tip" is that attackers will do a full duplex attack. 
+
+what is that? well to be called a MITM attack you have to be in the middle of somthing, and here we need to do the saem spoofing attack but to the routers, we need to make sure everione implicated is spoofed. router also got its spoof so we send like we are the ubuntu machine sendign replies and changing the arp table of the pfsense rotuer.
+
+attackers also will do ip_forwarding ,which is basically, forward all the reqeust and replies: "give me that ubuntu i will pass it for you..." not touching anything inside yet, but passing it. and becase is "not injecting or touching" tools like wireshark or suricata will not see the kali ip address
+
+-------------
+
+
+
+[![7.png](https://i.postimg.cc/d3BFhYtD/7.png)](https://postimg.cc/LgnwWGPM)
+
+now look the pfsense arp table
+
+--------------
+
+[![8.png](https://i.postimg.cc/bNm88pBB/8.png)](https://postimg.cc/zVH4FZ5C)
+
+bro, look all the suspicious traffic now coming (this is fro mthe POV fo the ubuntu), a lot of ARP replies...hmmm i wonder who could it be...
+
+
+----------
+
+
+[![9.png](https://i.postimg.cc/zGMrbp5w/9.png)](https://postimg.cc/3kg6zXkW)
+
+
+in this image above is the virtual machine kali filtering with wireshark dns packages
+below is the ubuntu machine before going to the league of legends website
+
+--------
+
+[![10.png](https://i.postimg.cc/3wvHgpJs/10.png)](https://postimg.cc/jWt9TDfc)
+
+
+all the traffic passing trhu the kali, look for the keywords "riotgames" or "league of legends"
+
+-----------
+
+
+
+[![11.png](https://i.postimg.cc/KzhhQz1R/11.png)](https://postimg.cc/p9CSLPYH)
+
+this last image is to be the certain problem of the ARP replies, wehre the lie it is soo strong that the replies are built upon fake , 192.168.1.1 (pfsense) never sent one, but here we are seeing one legit ARP reply suposedly sended but .1 from that mac address...
+
+
+--------------
