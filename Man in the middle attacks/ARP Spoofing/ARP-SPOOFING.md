@@ -3,11 +3,17 @@ Ok, going to make an explanation of what is an ARP Spoofing attack,and why is ca
 this guide builds upon the previous explanation of the ARP Process whihc is [here](https://github.com/DanielMunozParedes/SOC/blob/main/Man%20in%20the%20middle%20attacks/ARP%20Spoofing/ARP-PROCESS.md)
 this guide,also, initially will be based on the lab environment diagram in [victualbox](https://github.com/DanielMunozParedes/SOC/blob/main/lab-diagrams/1.md)
 
-so what is spoofing ??
+## so what is spoofing ?
 
 basically , spoofing "something" is to fake , to lie, to disguise as something or someone else; and becasue the ARP Process is sooo, and i reapeat soo blindly-trustful, some ppl take advantage of this.
 
-what consist an ARP Spoofing attack?
+
+![ops](https://static.scientificamerican.com/sciam/cache/file/17EF5FC0-20B4-4F03-A6620074C5751260_source.jpg)
+
+*yeah, taht is your OS and NIC trustung every ARP reply and request*
+
+
+## what consist an ARP Spoofing attack?
 
 a threat actor/atacker will aim to send multiple, constantly, ARP replies to the victim. Those replies contain a lie where the attacker is saying "Hey, hey my answer bro, this 192.168.1.1(rotuer's) is (at) this address (Interface) (00:11:22:33:44:55)
 
@@ -20,9 +26,13 @@ MAC address o nthe other hand... well as i have explained on the ARP Process MAC
 
 That is the core of this, the attack will say to the victim the rotuers(or anyone we try to impersonate) MAC is to this address (the attacker's), when the victim sends a frame (taht could be a request for a https website or smt else) the switch won't care that the MAC address the frame has aas destination for the router's ip is different as i said swtiches don't care about ips, so waht will the swicth does?
 
-exactly, it will send (based on the CAM TABLE)  to the whatever destination mac addr is attached to the frame, so in this attack it will go right to the attaacker's, simply as that.
+exactly, 
+it will send (based on the CAM TABLE)  to the whatever destination mac addr is attached to the frame, so in this attack it will go right to the attaacker's, simply as that.
 
-But why your victim, or let's call it better, why all the NIC have to be so blidly-trust to any ARP reply? That is the way it is. That is the mechanism ARP works as today. and that is a vulnerability that is and has been exploited.
+
+But why your victim, or let's call it better, why all the NIC have to be so blidly-trust to any ARP reply? That is the way it is. That is the mechanism ARP works as today. and that is a vulnerability that is and has been exploited. another thing that, at least is like a double edge sword about ARP, is that ARP has a terrible memory, like really bad (lol). so for devices to be "speaking" and comunicating they need to send each x amount of time constant replies so their partners know where to find them. why i said "double edge sword"? because we can detect an ARP spoofing attack by looking at the amount of replies coming from and to a single device.
+
+
 
 ---------------
 
@@ -116,3 +126,9 @@ this last image is to be the certain problem of the ARP replies, wehre the lie i
 
 
 --------------
+
+
+
+if you are interested on more on deep analysis on this topic i have here sections, like POVs, divided based on RED TEAM , BLUE TEAM specifically SOC and Network Security
+
+
