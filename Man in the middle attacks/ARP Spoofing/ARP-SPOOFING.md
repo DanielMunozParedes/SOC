@@ -127,12 +127,11 @@ this last image is to be the certain problem of the ARP replies, wehre the lie i
 
 --------------
 
-this guide builds upon the previous explanation of the ARP Process whihc is [here](https://github.com/DanielMunozParedes/SOC/blob/main/Man%20in%20the%20middle%20attacks/ARP%20Spoofing/ARP-PROCESS.md)
 
-
-if you are interested on more on deep analysis on this topic i have here sections, like POVs, divided based on [RED TEAM](https://github.com/DanielMunozParedes/SOC/blob/main/Man%20in%20the%20middle%20attacks/ARP%20Spoofing/ATTACKER/README.md
-)
-, [BLUE TEAM specifically SOC](https://github.com/DanielMunozParedes/SOC/blob/main/Man%20in%20the%20middle%20attacks/ARP%20Spoofing/DEFENDER/SOC/README.md)  and [Network Security](https://github.com/DanielMunozParedes/SOC/blob/main/Man%20in%20the%20middle%20attacks/ARP%20Spoofing/DEFENDER/NETSEC/README.md
-)
+if you are interested on more on deep analysis on this topic i have here sections, like POVs, divided based on 
+[RED TEAM](https://github.com/DanielMunozParedes/SOC/blob/main/Man%20in%20the%20middle%20attacks/ARP%20Spoofing/ATTACKER/README.md), 
+[BLUE TEAM specifically SOC](https://github.com/DanielMunozParedes/SOC/blob/main/Man%20in%20the%20middle%20attacks/ARP%20Spoofing/DEFENDER/SOC/README.md) 
+and 
+[Network Security](https://github.com/DanielMunozParedes/SOC/blob/main/Man%20in%20the%20middle%20attacks/ARP%20Spoofing/DEFENDER/NETSEC/README.md)
 
 
