@@ -1,7 +1,7 @@
 Ok, going to make an explanation of what is an ARP Spoofing attack,and why is called a man in the middle attack as well.
 
 this guide builds upon the previous explanation of the ARP Process whihc is [here](https://github.com/DanielMunozParedes/SOC/blob/main/Man%20in%20the%20middle%20attacks/ARP%20Spoofing/ARP-PROCESS.md)
-this guide,also, initially will be based on the lab environment diagram in [victualbox](https://github.com/DanielMunozParedes/SOC/blob/main/lab-diagrams/1.md)
+this guide,also, initially will be based on the lab environment diagram in [virtualbox](https://github.com/DanielMunozParedes/SOC/blob/main/lab-diagrams/1.md)
 
 ## so what is spoofing ?
 
