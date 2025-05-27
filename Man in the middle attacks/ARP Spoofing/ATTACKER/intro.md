@@ -7,8 +7,8 @@ After understanding the [ARP processs] i went to understand the [ARP Spoofing ta
 
 if you are interested to learn about my journey, please go to the next post(s)!
 
-1 - building an raw frame
-2 - sniffing the network (see what out NIC sees)
-3 - building an ARP request and saving it on our arp table
-4 - sending request and reply and sniffing to capture the mac address of the victim
-5 - complete arp spoofing loop and revert
+# 1 - building an raw frame
+# 2 - sniffing the network (see what out NIC sees)
+# 3 - building an ARP request and saving it on our arp table
+# 4 - sending request and reply and sniffing to capture the mac address of the victim
+# 5 - complete arp spoofing loop and revert
